@@ -7,7 +7,7 @@ import android.content.Intent
 class AutoStartService : BroadcastReceiver() {
     override fun onReceive(p0: Context?, p1: Intent?) {
         p0?.let {
-            ForegroundService.startService(it, "Foreground Service is running...")
+            ForegroundService.instance.startService(it, "Foreground Service is running...")
         }
     }
 }

@@ -10,11 +10,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val isStarted = ForegroundService.isServiceStarted(this)
-        if (!isStarted) {
-            ForegroundService.startService(this, "Foreground Service is running...")
-            finish()
-        }
+        ForegroundService.instance.activity = this
+//        val isStarted = ForegroundService.isServiceStarted(this)
+//        if (!isStarted) {
+//            ForegroundService.startService(this, "Foreground Service is running...")
+//            finish()
+//        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,10 +24,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnStartService.setOnClickListener {
-            ForegroundService.startService(this, "Foreground Service is running...")
+            ForegroundService.instance.startService(this, "Foreground Service is running...")
         }
         binding.btnStopService.setOnClickListener {
-            ForegroundService.stopService(this)
+            ForegroundService.instance.stopService(this)
         }
     }
 }
